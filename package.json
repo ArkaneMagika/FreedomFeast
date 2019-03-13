@@ -1,0 +1,35 @@
+{
+  "name": "freedomfeast",
+  "version": "1.0.0",
+  "description": "A NGO project. Providing fosouth asian food deliver services to the tri-state area.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArkaneMagika/FreedomFeast.git"
+  },
+  "keywords": [
+    "freedom",
+    "feast",
+    "api",
+    "ngo",
+    "angular"
+  ],
+  "author": "Akane, Tom, Khyati",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArkaneMagika/FreedomFeast/issues"
+  },
+  "homepage": "https://github.com/ArkaneMagika/FreedomFeast#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.19"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
