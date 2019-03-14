@@ -1,18 +1,18 @@
-<ul class="nav">
-
-    <li href="a">Home</li>
-    <li href="b">Browse Kitchens</li>
-    <li href="z">Sign out</li>
-
-  </ul>
-
-<!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:left">
   <h1>
     Welcome to {{ title }}!
   </h1>
   <a href="http://www.wikipedia.org"><img width="500" alt="Angular Logo" src="http://www.shenzhenparty.com/files/imagecache/event_listing/flyers/img_5100fu_ben_.jpg"></a>
 </div>
-
-
+<!DOCTYPE html>
+<html>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span><button mat-button>Home</button></span>
+    <span><button mat-button>Browse Kitchens</button></span>
+    <span><button mat-button>{{UserButtonTitle}}</button></span>
+  </mat-toolbar-row>
+</mat-toolbar>
 <router-outlet></router-outlet>
+
+</html>
