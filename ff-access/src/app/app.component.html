@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
 <mat-toolbar>
   <mat-toolbar-row>
-    <span><button mat-button>Home</button></span>
+    <span><button mat-button routerLink='/home'>Home</button></span>
     <span><button mat-button>Browse Kitchens</button></span>
-    <span><button mat-button>{{UserButtonTitle}}</button></span>
+    <span><button mat-button routerLink='/login'>{{UserButtonTitle}}</button></span>
   </mat-toolbar-row>
 </mat-toolbar>
 <router-outlet></router-outlet>
-
-</html>

@@ -1,34 +1,99 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  MatToolbarModule,
-  MatIconModule,
-  MatTreeModule,
+  MatAutocompleteModule,
   MatBadgeModule,
-  MatCardModule
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule,
 }
-from '@angular/material';
-import { MatButtonModule } from '@angular/material/button'
+  from '@angular/material';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTreeModule,
-    MatBadgeModule,
-    MatCardModule
-  ],
   exports: [
     CommonModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatTreeModule,
+    MatAutocompleteModule,
     MatBadgeModule,
-    MatCardModule
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatStepperModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatTreeModule,
+    CdkStepperModule,
+    A11yModule,
+    DragDropModule,
+    PortalModule,
+    ScrollingModule,
+    CdkTableModule,
+    CdkTreeModule
   ]
 })
 export class MaterialLayoutModule { }
