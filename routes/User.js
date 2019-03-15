@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const userRoute = express.Router();
+
 const User = require('../models/User');
 
 userRoute.use(bodyParser.urlencoded({extended:true}));
 userRoute.use(bodyParser.json());
+
+userRoute.use()
 
 userRoute.get('/api/user/:id/details', (req, res, next) =>{
     User.findById(id, function(err, user_details){
