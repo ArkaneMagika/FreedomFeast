@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { UsersModule } from './component/users.module';
 
-import { OrdersComponent } from "./component/orders/orders.component";
-import { HomeComponent } from './component/home/home.component';
-import { LoginRegisterComponent } from './component/login-register/login-register.component';
-import { KitchenComponent } from './component/kitchen/kitchen.component';
+import { AppComponent } from './app.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
+import { UsersComponent } from './component/users.component';
+/*import { RegularComponent } from './component/users/regular/regular.component';
+import { OrdersComponent } from './component/users/orders/orders.component';
+import { KitchenComponent } from './component/users/kitchen/kitchen.component'; */
 
 const routes: Routes = [
-  {path:'', redirectTo:'home', pathMatch:'full'},
-  {path:'home', component:HomeComponent},
-  {path:'login', component:LoginRegisterComponent},
-  {path:'users/kitchen', component:KitchenComponent},
-  {path:'user/kitchen/orders', component:OrdersComponent}
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', component: AppComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'users', component: UsersComponent, loadChildren: () => UsersModule },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true }), UsersModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

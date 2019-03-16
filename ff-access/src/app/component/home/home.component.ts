@@ -8,6 +8,16 @@ import { ActivatedRoute, Router, ParamMap, ChildActivationStart } from '@angular
 })
 export class HomeComponent implements OnInit {
 
+  title='';
+  UserButtonTitle = 'Login/Logout'
+  
+  kitchen_group = {
+    name:"Old Bill's Cafe",
+    type:"Non-Vegetarian Bakery",
+    img:"",
+    desc:"Bill's kitchen is the premier kitchen for "
+  }
+
   constructor(private activatedRoute: ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
