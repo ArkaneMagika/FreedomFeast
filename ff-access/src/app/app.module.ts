@@ -1,37 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { MatNativeDateModule } from '@angular/material';
+
 import { AppRoutingModule } from './app-routing.module';
+import { UsersModule } from './component/users.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialLayoutModule } from './material-layout/material-layout.module';
 
 import { AppComponent } from './app.component';
-import { UsersComponent } from './component/users/users.component';
-import { KitchenComponent } from './component/kitchen/kitchen.component';
-import { LoginRegisterComponent } from './component/login-register/login-register.component';
-import { HomeComponent } from './component/home/home.component';
-import { OrdersComponent } from './component/orders/orders.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
+import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppComponent,
-    UsersComponent,
-    KitchenComponent,
-    LoginRegisterComponent,
-    HomeComponent,
-    OrdersComponent
+    LoginComponent,
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    UsersModule,
     BrowserAnimationsModule,
     MaterialLayoutModule,
-    MatNativeDateModule,
-    FormsModule,
-    ReactiveFormsModule
+  ],
+  exports:[
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
