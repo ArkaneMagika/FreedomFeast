@@ -7,6 +7,7 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -46,6 +47,7 @@ import {
 }
   from '@angular/material';
 import { MatFormFieldModule } from "@angular/material/form-field";
+
 
 @NgModule({
   declarations: [],
@@ -93,7 +95,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     PortalModule,
     ScrollingModule,
     CdkTableModule,
-    CdkTreeModule
+    CdkTreeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MaterialLayoutModule { }

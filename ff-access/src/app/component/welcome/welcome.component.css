@@ -1,0 +1,20 @@
+*{box-sizing: border-box}
+
+.slideshow-container{
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+}
+.my-Slides{
+    display: none;
+}
+.text{
+    position: absolute;
+    text-align: center;
+    top: 0;
+    padding: 8px 12px;
+}
+.fade{
+    animation-name: fade;
+    animation: 2s;
+}

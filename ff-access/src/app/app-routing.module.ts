@@ -2,21 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsersModule } from './component/users.module';
 
-import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
-import { UsersComponent } from './component/users.component';
-/*import { RegularComponent } from './component/users/regular/regular.component';
-import { OrdersComponent } from './component/users/orders/orders.component';
-import { KitchenComponent } from './component/users/kitchen/kitchen.component'; */
+import { WelcomeComponent } from './component/welcome/welcome.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full' },
-  { path: '', component: AppComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'users', component: UsersComponent, loadChildren: () => UsersModule },
+  { path: 'users', loadChildren: () => UsersModule },
   { path: '**', component: PageNotFoundComponent },
 ];
 

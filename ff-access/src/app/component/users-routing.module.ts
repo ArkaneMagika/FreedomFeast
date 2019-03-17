@@ -1,20 +1,35 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UsersComponent } from './users.component';
 import { RegularComponent } from './users/regular/regular.component';
-import { OrdersComponent } from './users/orders/orders.component';
-import { KitchenComponent } from './users/kitchen/kitchen.component';
+import { ProvidersComponent } from './users/providers/providers.component';
+import { OrdersComponent } from './orders/orders.component';
+import { MenuComponent } from './menu/menu.component';
+import { CartComponent } from './cart/cart.component';
+import { SettingsComponent } from './settings/settings.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const UserRoutes: Routes = [
   {
-    path: 'users', canActivate: [], component: UsersComponent, children: [
-      { path: 'regular', component: RegularComponent, canActivateChild: [true] },
-      { path: 'regular/orders', component: OrdersComponent, canActivateChild: [true] },
-      { path: 'kitchen', component: KitchenComponent, canActivateChild: [true] },
-      { path: 'kitchen/orders', component: OrdersComponent, canActivateChild: [true] }
+    path: 'users', canActivate: [], children: [
+      {
+        path: 'regular', component: RegularComponent, canActivateChild: [true], children: [
+          { path: 'cart', component: CartComponent },
+          { path: 'settings', component: SettingsComponent },
+          { path: 'order-history', component: OrdersComponent },
+          { path: 'checkout', component: CheckoutComponent }
+        ]
+      },
+      {
+        path: 'providers', component: ProvidersComponent, canActivateChild: [true], children: [
+          { path: 'orders', component: OrdersComponent },
+          { path: 'settings', component: SettingsComponent },
+          { path: 'order-history', component: OrdersComponent },
+          { path: 'menu', component: MenuComponent },
+        ]
+      }
     ]
-  },
+  }
 ]
 
 @NgModule({
