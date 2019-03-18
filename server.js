@@ -1,3 +1,4 @@
+const dotenv = require('dotenv')
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -9,15 +10,9 @@ const corsOptions = {
     origin: 'http://localhost:4200',
     optionsSuccessStatus: 200
 }
-app.use(cors(corsOptions))
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
-    next();
-});
-
-const port = 3000 || process.env.PORT || 3030 || 4000;
+//Port
+const port = process.env.PORT || 3030 || 4000;
 
 //Mongoose => MongoDB Settings
 var connection = 'mongodb://localhost:27017/FreedomFeast';
@@ -26,8 +21,26 @@ mongoose.connect(connection, {useNewUrlParser:true})
 
 
 //Routes Available
-const kitchen = require('./routes/Kitchen')
-app.use('kitchen',kitchen);
+const regular_user = require('./routes/User')
+const provider = require('./routes/Provider')
+const login = require('./routes/Login')
+const register = require('./routes/Register')
+
+// app.use(dotenv) //Dot env 
+app.use(cors(corsOptions))
+app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', `http://localhost:${port}`);
+        res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+        next();
+    })
+    
+// app.use('api/users/provider', provider),
+app.use([
+    regular_user,
+    login,
+    register])
+// app.use(login),
+// app.use(register)
 
 
 //Server starts listening
@@ -35,4 +48,4 @@ app.listen(port, () => {
     console.log(`Listening on port ${port}`)
 });
 
-module.exports = app, jwt, jwtMiddleware
+module.exports = app
