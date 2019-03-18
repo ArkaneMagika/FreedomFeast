@@ -1,26 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userRoute = express.Router();
+const RegularRoute = express.Router();
 
-const User = require('../models/User');
+const Regular = require('../models/User');
 
-userRoute.use(bodyParser.urlencoded({extended:true}));
-userRoute.use(bodyParser.json());
+RegularRoute.use(bodyParser.urlencoded({extended:true}));
+RegularRoute.use(bodyParser.json());
 
-userRoute.use()
 
-userRoute.get('/api/user/:id/details', (req, res, next) =>{
-    User.findById(id, function(err, user_details){
+RegularRoute.get('/api/regular/:id/details', (req, res, next) =>{
+    Regular.findById(id, function(err, Regular_details){
         if(err)console.error(`An error occured ${err}`);
-        res.json(user_details);
+        res.json(Regular_details);
     })
 });
 
-userRoute.put('/api/user/update/:id', (req, res, next) =>{
-    User.findByIdAndUpdate(id, req.body, {new:true}, function(err, updated_user){
+RegularRoute.put('/api/regular/update/:id', (req, res, next) =>{
+    Regular.findByIdAndUpdate(id, req.body, {new:true}, function(err, updated_Regular){
         if(err)console.error(`An error occured ${err}`);
-        res.json(updated_user);
+        res.json(updated_Regular);
     });
 });
 
-module.exports = userRoute;
+module.exports = RegularRoute;
