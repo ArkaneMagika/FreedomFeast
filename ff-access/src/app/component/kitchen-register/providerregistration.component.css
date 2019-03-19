@@ -1,0 +1,11 @@
+.button {
+    border: none;
+    padding: 10px;
+    color: #fff;
+    margin: 0 10px;
+    background: $button;
+    font-weight: 700;
+    border-radius: 4px;
+    margin-left: 15px;
+    background-color: steelblue;
+  }

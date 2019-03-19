@@ -1,0 +1,197 @@
+<form #providerForm="ngForm" (ngSubmit)="onSubmit(providerForm)" >
+  <table style="width:40%;text-align: left;" >
+
+<tr><td style="width:50%;">
+
+  <label for="providerName">Provider Name</label>
+</td><td>
+  <input type="text" class="form-control" name="providerName" required [(ngModel)]="providerForm.providerName"  #input="ngModel">
+  <!-- appForbiddenName="bob" -->
+  <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.providerName?.valid" >
+      Provider Name is required
+      </div>
+</td></tr>
+
+<tr><td style="width:50%;">
+
+  <label for="ownerNames" style="width:500px;">Names of Owners (Separate by Comma)</label>
+  </td><td>
+    <input type="text" id="ownerNames" class="form-control" name="ownerNames"  required [(ngModel)]="providerForm.ownerNames"   #input="ngModel" >
+    <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.ownerNames?.valid" >
+        <div [hidden]="!providerForm.controls.ownerNames.errors.required">
+          Owner Name(s) are required
+        </div>
+    </div>
+  </td></tr>
+
+
+  <!-- <div style="color:red" *ngIf="!providerForm.controls.lastname?.valid" >
+      <div [hidden]="!providerForm.controls.lastname.errors.required">
+          lastname Name is required
+          </div>
+      </div> -->
+      <tr><td style="width:50%;">
+
+    <label for="email">Email</label>
+      </td><td>
+    <input type="text" class="form-control" name="email" required [(ngModel)]="providerForm.email"  email="true" #input="ngModel">
+    <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.email?.valid" >
+      Enter Valid email
+      </div>
+    <!-- <div style="color:red" *ngIf="submitted && !providerForm.controls.firstname?.valid" >
+<div [hidden]="!providerForm.controls.firstname.errors.required">
+First Name is required
+    </div>
+</div> -->
+    
+  </td></tr>
+
+  <tr><td style="width:50%;">    
+      <label for="password" >Password</label>
+</td><td>
+      <input type="text" type="password"   class="form-control mb-4" class="form-control" name="password"  required [(ngModel)]="providerForm.password" #input="ngModel" >
+      <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.password?.valid">
+        Password is required
+        </div>       
+    </td></tr>
+
+    <tr><td style="width:50%;">
+        <label for="streetAddress">Street Address</label>
+      </td><td>
+        <input type="text" class="form-control" name="streetAddress" required [(ngModel)]="providerForm.streetAddress"  #input="ngModel">
+        <!-- appForbiddenName="bob" -->
+        <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.streetAddress?.valid" >
+            Street Address is required
+            </div>
+      </td></tr>
+
+      <tr><td style="width:50%;">
+          <label for="city">City</label>
+        </td><td>
+          <input type="text" class="form-control" name="City" required [(ngModel)]="providerForm.City"  #input="ngModel">
+          <!-- appForbiddenName="bob" -->
+          <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.City?.valid" >
+              City is required
+              </div>
+        </td></tr>
+
+        <tr><td style="width:50%;">
+            <label for="state">State</label>
+          </td><td>
+            <select id="state" name="state" class="form-control" required [(ngModel)]="providerForm.state"  #input="ngModel">
+            </select>
+            <!-- appForbiddenName="bob" -->
+            <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.state?.valid" >
+                State is required
+                </div>
+          </td></tr>
+
+          <tr><td style="width:50%;">
+              <label for="zipCode">Zip Code</label>
+            </td><td>
+              <input type="text" class="form-control" name="zipCode" required [(ngModel)]="providerForm.zipCode"  #input="ngModel">
+              <!-- appForbiddenName="bob" -->
+              <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.zipCode?.valid" >
+                  City is required
+                  </div>
+            </td></tr>
+
+    <tr><td style="width:50%;">
+     
+          <label for="Question">Secuirity Question</label>
+    </td><td>
+          <select name="singleSelect"  required [(ngModel)]="providerForm.singleSelect" #input="ngModel" style="width: 173px;">
+            
+      <!-- <option value="">---Please select---</option> not selected / blank option -->
+              <option value="0">What is the name of your First School?</option>
+              <option value="1">What is your pet Name?</option>
+            </select>
+            <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.singleSelect?.valid"  >
+              Question is required
+              </div>
+    
+  </td></tr>
+  <tr><td style="width:50%;">
+  
+        <label for="answer">Your Answer</label>
+  </td><td>
+        <input type="text" class="form-control" name="answer"  class="form-control mb-4" required [(ngModel)]="providerForm.answer" #input="ngModel">
+        <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.answer?.valid"  >
+          Answer is required
+          </div>
+      
+      </td></tr><br/><br/>
+      <tr><td>
+      <div class="form-group">
+        <button type="submit" (click)="Sub()" class="button">Submit</button>
+        <button type="button" (click)="providerForm.reset()" class="button">Cancel</button>
+        </div>
+      <!-- Default form login -->
+    </td></tr>
+
+    <tr><td style="width:50%;">
+      
+        <label for="daysOpen">Days Open</label>
+        </td><td>
+          <input type="text" class="form-control" name="daysOpen" required [(ngModel)]="providerForm.daysOpen"  #input="ngModel">
+          <!-- appForbiddenName="bob" -->
+          <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.daysOpen?.valid" >
+              Days Open is required
+              </div>
+          
+        </td></tr>
+      
+    <tr><td>
+      Days Open:
+      <input type="checkbox" name="Sunday" value="Sunday" tabindex="1"/>Sunday<br/>
+      <input type="checkbox" name="Monday" value="Monday" tabindex="2"/>Monday<br/>
+      <input type="checkbox" name="Tuesday" value="Tuesday" tabindex="3"/>Tuesday<br/>
+      <input type="checkbox" name="Wednesday" value="Wednesday" tabindex="4"/>Wednesday<br/>
+      <input type="checkbox" name="Thursday" value="Thursday" tabindex="5"/>Thursday<br/>
+      <input type="checkbox" name="Friday" value="Friday" tabindex="6"/>Friday<br/>
+      <input type="checkbox" name="Saturday" value="Saturday" tabindex="7"/>Saturday<br/>
+    </td></tr>
+
+
+    <tr><td style="width:50%;">
+
+      <label for="timeOpen">Time Open</label>
+      </td><td>
+        <input type="text" class="form-control" name="timeOpen" required [(ngModel)]="providerForm.timeOpen"  #input="ngModel">
+        <!-- appForbiddenName="bob" -->
+        <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.timeOpen?.valid" >
+            Time Open is required
+            </div>
+        
+      </td></tr>
+      
+      <tr><td style="width:50%;">      
+      <label for="timeClosed">Time Closed</label>
+      </td><td>
+        <input type="text" class="form-control" name="timeClosed" required [(ngModel)]="providerForm.timeClosed"  #input="ngModel">
+        <!-- appForbiddenName="bob" -->
+        <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.timeClosed?.valid" >
+            Time Closed is required
+            </div>
+      </td></tr>
+
+      <tr><td style="width:50%;">      
+          <label for="restaurantImage">Restaurant Image</label>
+          </td><td>
+              <input type="file" (change)="onFileSelected($event)">
+              <button type="buttom" (click)="onUpload()">Upload</button>
+              <!-- appForbiddenName="bob" -->
+            <!-- <div style="color:#FB4040" *ngIf="submitted && !providerForm.controls.restaurantImage?.valid" >
+                Restaurant Image is required
+                </div> -->
+          </td></tr>
+
+    
+
+    </table>
+
+
+<!-- Default form login -->
+    
+        <!-- <pre>{{providerForm.value|json}}</pre> -->
+</form>
