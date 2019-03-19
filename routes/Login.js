@@ -1,60 +1,46 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-
-const UserController = require('../controllers/Login.controller')
-
+const bcrypt = require('bcryptjs')
 const exjwt = require('express-jwt');
+const jwt = require('jsonwebtoken')
+const config = require('../config')
 
+const User = require('../models/User');
+const Provider = require('../models/Provider')
 
 const LoginRoute = express.Router();
-const jwtMiddleware = exjwt({secret: 'This is my Secret Password. Dont let any0n3 f1nd 0ut'})
+const jwtMiddleware = exjwt({ secret: config.public_key })
 
-LoginRoute.use(bodyParser.urlencoded({extended:true}));
+LoginRoute.use(bodyParser.urlencoded({ extended: true }));
 LoginRoute.use(bodyParser.json());
 
-LoginRoute.post('/api/login', (req, res) => {
-    const {username, password} = req.body;
-    
+LoginRoute.post('/api/user/login', (req, res) => {
+    User.findOne({ username: req.body.username }, function checkDB(err, user) {
+        if (bcrypt.compare(req.body.password, user.password,
+            function respondIfTrue(err, res, next) {
+                if (res) {
+                    let token = jwt.sign({ id: user._id }, config.public_key, {
+                        expiresIn: '2h'
+                    });
+                    res.sendStatus(200).json({
+                        status: "success", message: "user found", data: { username: user.username, id: user._id, token: token }
+                    });
+                }
+                else {
+                    next(err)
+                }
+            }
+        )) { }
+        else {
+            res.sendStatus(401).json({ status: "error", message: `Invalid email/password!!! ${err}`, data: null })
+        }
+    })
 });
-LoginRoute.get('/api/login', jwtMiddleware, (req, res) => {
+
+LoginRoute.get('/api/user/login', jwtMiddleware, (req, res) => {
+
     res.sendStatus(200);
 })
 
 
 module.exports = LoginRoute;
-
-/* let users = [
-    {
-        id: 1,
-        username: 'test',
-        password: 'asdf123',
-        type:1
-    },
-    {
-        id: 2,
-        username: 'test2',
-        password: 'asdf12345',
-        type:2
-    }
-]; */
-
-// for (let user of users) { // I am using a simple array users which i made above
-//     if (username == user.username && password == user.password /* Use your password hash checking logic here !*/) {
-//         //If all credentials are correct do this
-//         let token = jwt.sign({ id: user.id, username: user.username }, 'This is my Secret Password. Dont let any0n3 f1nd 0ut', { expiresIn: 129600 }); // Sigining the token
-//         res.json({
-//             sucess: true,
-//             err: null,
-//             token
-//         });
-//         break;
-//     }
-//     else {
-//         res.status(401).json({
-//             sucess: false,
-//             token: null,
-//             err: 'Username or password is incorrect'
-//         });
-//     }
-// }
-// });
