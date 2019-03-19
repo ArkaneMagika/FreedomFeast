@@ -1,23 +1,32 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const userRoute = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const exjwt = require('express-jwt')
+const config = require('../config');
+
+const UserRoute = express.Router();
 const User = require('../models/User');
 
-userRoute.use(bodyParser.urlencoded({extended:true}));
-userRoute.use(bodyParser.json());
+UserRoute.use(bodyParser.urlencoded({ extended: true }));
+UserRoute.use(bodyParser.json());
 
-userRoute.get('/api/user/:id/details', (req, res, next) =>{
-    User.findById(id, function(err, user_details){
-        if(err)console.error(`An error occured ${err}`);
+const jwtMiddleware = exjwt({ secret: config.public_key })
+
+//Get details for specific user
+UserRoute.get('/api/regular/:id/details', jwtMiddleware, (req, res, next) => {
+   User.findById(id, function (err, user_details) {
+        if (err) console.error(`An error occured ${err}`);
         res.json(user_details);
     })
 });
 
-userRoute.put('/api/user/update/:id', (req, res, next) =>{
-    User.findByIdAndUpdate(id, req.body, {new:true}, function(err, updated_user){
-        if(err)console.error(`An error occured ${err}`);
-        res.json(updated_user);
+//Update users details from settings component
+UserRoute.put('/api/regular/update/:id', jwtMiddleware, (req, res, next) => {
+    Regular.findByIdAndUpdate(id, req.body, { new: true }, function (err, updated_Regular) {
+        if (err) console.error(`An error occured ${err}`);
+        res.json(updated_Regular);
     });
 });
 
-module.exports = userRoute;
+module.exports = UserRoute;
