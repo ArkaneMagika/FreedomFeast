@@ -30,5 +30,4 @@ const ProviderSchema = new mongoose.Schema({
     time_closed:[Date],
     image:""
 });
-exports.ProviderSchema = mongoose.model('Provider', ProviderSchema)
-exports.MenuSchema = mongoose.model('Menu', MenuSchema)
+module.exports = mongoose.model('Provider', ProviderSchema)
