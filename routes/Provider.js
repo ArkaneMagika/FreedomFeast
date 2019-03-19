@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const ProviderRoute = express.Router()
 
 const Provider = require('../models/Provider');
-const ProviderController = require('../controllers/Provider.controller')
 
 ProviderRoute.use(bodyParser.urlencoded({ extended: true }))
 ProviderRoute.use(bodyParser.json())
@@ -29,5 +28,5 @@ ProviderRoute.put('/api/provider/:id/new-menu', (req, res, next) => {
     
 })
 
-ProviderRoute.put()
+//ProviderRoute.put()
 module.exports = ProviderRoute;
