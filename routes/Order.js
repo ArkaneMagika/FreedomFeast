@@ -9,8 +9,8 @@ const User = require('../models/User')
 OrderRoute.use(bodyParser.urlencoded({ extended: true }));
 OrderRoute.use(bodyParser.json());
 
-OrderRouter.get('/api/orders/', (req, res) => {
-    Order.find(function (err, order) {
+OrderRouter.get('/api/users/orders/', (req, res) => {
+    Order.findById(function (err, order) {
         if (true) {
             res.json(order)
             res.sendStatus(200);
@@ -21,18 +21,35 @@ OrderRouter.get('/api/orders/', (req, res) => {
         }
     })
 })
-
-//creates a new user  
-OrderRoute.post('/api/orders/add', (req, res) => {
-    ordersUpdate = {
-
-    }
-    Regular.findOneAndUpdate({ "username": req.username },
-        { $push: { "": a }, da },
-        function () {
-
-        }
-    )
+Order.Router.get('/api/provider/orders/', (req, res) => {
+    Order.findById
 })
 
-OrderRoute.post()
+//creates a new order
+OrderRoute.post('/api/orders/add', (req, res) => {
+    Order.create({
+        kitchen_id: req.body.kitchen_id,
+        kitchen_name: req.body.kitchen_name,
+        menu_items: [req.body.menu_items],
+        total: req.body.total,
+        user_id: req.body.user_id
+    }), function(err, order){
+        res.sendStatus(200).send({})
+    }
+
+    Provider.findOneAndUpdate({
+        provider_orders:[req.body],
+        function(params){
+
+        }
+    })
+    
+    User.findOneAndUpdate({
+        user_orders:[req.body],
+        function (params) {
+            
+        }
+    })
+})
+
+module.export = OrderRoute

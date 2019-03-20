@@ -19,6 +19,7 @@ const ProviderSchema = new mongoose.Schema({
     provider_name:"",
     owner:[String],
     provider_type:"",
+    provider_username:"",
     email:String,
     password:String,
     address:[AddressSchema],
