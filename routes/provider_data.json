@@ -1,0 +1,55 @@
+{
+    "provider_name": "Betty's Eatery",
+    "owner": [
+        "Betty Crockford"
+    ],
+    "provider_type": [
+        "Vegetarian",
+        "Non-Vegetarian"
+    ],
+    "email": "betty12@email.com",
+    "password": "",
+    "address": [
+        {
+            "street": "100 Baker Street",
+            "city": "Newark",
+            "state": "NJ",
+            "zip": "01010"
+        }
+    ],
+    "provider_menu": [
+        // {
+        //     "item_name": "",
+        //     "item_type": "",
+        //     "description": "",
+        //     "vegetarian": "",
+        //     "price": 2
+        // },
+        // {
+        //     "item_name": "",
+        //     "item_type": "",
+        //     "description": "",
+        //     "vegetarian": true,
+        //     "price": 10
+        // },
+        // {
+        //     "item_name": "Chiken Masala",
+        //     "item_type": ["chicken", "curry"],
+        //     "description": "A flavorful masala served with rice and a side of green salad",
+        //     "vegetarian": false,
+        //     "price": 10
+        // }
+    ],
+    "provider_orders": {
+        "orders_id": [
+            "1dy9cyp291yp7g"
+        ]
+    },
+    "time_open": [
+        ""
+    ],
+    "time_closed": [
+        ""
+    ],
+    "image": "images/img1.jpg"
+}
