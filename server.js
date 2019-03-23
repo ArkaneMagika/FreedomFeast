@@ -1,7 +1,8 @@
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+
 
 const app = express();
 
@@ -21,26 +22,23 @@ mongoose.connect(connection, {useNewUrlParser:true})
 
 
 //Routes Available
-const regular_user = require('./routes/User')
-const provider = require('./routes/Provider')
+const user = require('./routes/User')
+// const provider = require('./routes/Provider')
 const login = require('./routes/Login')
 const register = require('./routes/Register')
 
-// app.use(dotenv) //Dot env 
 app.use(cors(corsOptions))
 app.use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', `http://localhost:${port}`);
-        res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-type:Authorization');
         next();
     })
     
-// app.use('api/users/provider', provider),
 app.use([
-    regular_user,
     login,
+    user,
     register])
-// app.use(login),
-// app.use(register)
+
 
 
 //Server starts listening
