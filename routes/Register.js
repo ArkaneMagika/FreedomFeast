@@ -1,7 +1,7 @@
-const app = require('../server')
+const express = require('express')
 const bodyParser = require('body-parser');
 
-const RegisterRoute = app.Router()
+const RegisterRoute = express.Router()
 
 const User = require('../models/User');
 const Provider = require('../models/Provider');
@@ -17,7 +17,7 @@ RegisterRoute.post('/api/register/user', async (req, res) => {
         }
         else{
             // console.log(user)
-            res.sendStatus(200)
+            res.send(200)
             .json(user)
         }
     })
@@ -26,12 +26,13 @@ RegisterRoute.post('/api/register/user', async (req, res) => {
 RegisterRoute.post('/api/register/provider', async(req, res) =>{
     Provider.create(req.body, function onProviderRegister(err, provider){
         if(err){
-            // console.log(err)
+            console.log(err)
             res.sendStatus(403)
         }
         else{
             // console.log(res)
-            res.sendStatus(200)
+            res
+            // .send(200)
             .json(provider)
         }
     })

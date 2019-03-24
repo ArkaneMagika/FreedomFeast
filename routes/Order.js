@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const OrderRouter = express.Router();
 
 const Provider = require('../models/Provider')
-const Order = require('../models/Orders')
+const Order = require('../models/Order')
 const User = require('../models/User')
 
 OrderRoute.use(bodyParser.urlencoded({ extended: true }));

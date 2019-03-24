@@ -17,7 +17,8 @@ const OrderSchema = new mongoose.Schema({
         // required:true
     },
     created: {
-        default: Date.now.toString()
+        type:Date,
+        default: Date.now
     }
 })
 
@@ -29,7 +30,7 @@ OrderSchema.post('save', async function onOrderCreation() {
 })
 
 OrderSchema.methods.onOrderCreation = async function () {
-    Provider.fin
+    // Provider.fin
 }
 
 const Order = mongoose.model('Order', OrderSchema, "Orders")

@@ -1,0 +1,47 @@
+   [
+      {
+         "name": "Bogisich - Keeling",
+         "owner": "Keagan Wuckert",
+         "specialty": "food",
+         "email": "Francesco31@yahoo.com",
+         "password": "myPass",
+         "address": {
+            "street": "69509 Lisandro Trail",
+            "city": "North Juniortown",
+            "state": "New York",
+            "zip": "48478"
+         },
+         "date_opened": "",
+         "img": "de_engineered_implementation.teacher"
+      },
+      {
+         "name": "Bahringer LLC",
+         "owner": "Stephan Gislason",
+         "specialty": "food",
+         "email": "Felicity.Turcotte3@hotmail.com",
+         "password": "W3FoodGroup",
+         "address": {
+            "street": "60683 Smith Club",
+            "city": "North Maxieborough",
+            "state": "Vermont",
+            "zip": "06029-3179"
+         },
+         "date_opened": [],
+         "img": "middleware_bypass_extension.vsd"
+      },
+      {
+         "name": "Kshlerin - Hauck",
+         "owner": "Joaquin Strosin",
+         "specialty": "food",
+         "email": "Anabel.Bayer@gmail.com",
+         "password": "watermelon",
+         "address": {
+            "street": "33001 Batz Pines",
+            "city": "Port Keshawnville",
+            "state": "Idaho",
+            "zip": "58647-7384"
+         },
+         "date_opened": [],
+         "img": "transmitting_interface.ras"
+      }
+   ]

@@ -16,7 +16,7 @@ const AddressSchema = new mongoose.Schema({
         // required:true
     },
     zip: {
-        type: Number,
+        type: String,
         // required:true
     },
 });
@@ -89,7 +89,7 @@ ProviderSchema.pre('save', async function genPassword(next) {
     try {
         var salt = await bcrypt.genSalt(10, config.secret_key)
 
-        var passwordHashed = await bcrypt.hash(new_password, salt)
+        var passwordHashed = await bcrypt.hash(this.password, salt)
         this.password = passwordHashed
         next()
 
@@ -108,5 +108,5 @@ ProviderSchema.statics.comparePassword = async function (inputPassword, provider
         return await false
     }
 }
-const Provider = mongoose.model('Provider', ProviderSchema, 'Providers')
+const Provider = mongoose.model('Provider', ProviderSchema, "Providers")
 module.exports = Provider

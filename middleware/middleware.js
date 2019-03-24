@@ -20,7 +20,7 @@ let checkToken = (req, res, next) => {
             }
         })
     } else {
-        return await res.json({
+        return res.json({
             success:false,
             message: 'Auth token was not supplied'
         })

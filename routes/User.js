@@ -1,10 +1,10 @@
-const app = require('../server');
+const express = require('express');
 const bodyParser = require('body-parser');
 
-const UserRoute = app.Router();
+const UserRoute = express.Router();
 
 const User = require('../models/User');
-const Order = require('../models/Orders')
+const Order = require('../models/Order')
 const middleware = require('../middleware/middleware')
 
 UserRoute.use(bodyParser.urlencoded({ extended: false }));

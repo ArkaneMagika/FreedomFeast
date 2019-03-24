@@ -55,5 +55,5 @@ UserSchema.statics.comparePassword = async function (inputPassword, userPassword
 
 }
 
-const User = mongoose.model("User", UserSchema, 'Users')
+const User = mongoose.model("User", UserSchema, "Users")
 module.exports = User
