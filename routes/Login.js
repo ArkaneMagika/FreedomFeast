@@ -1,46 +1,102 @@
-const express = require('express')
+const app = require('../server')
 const bodyParser = require('body-parser')
-const bcrypt = require('bcryptjs')
-const exjwt = require('express-jwt');
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 
-const User = require('../models/User');
+const LoginRoute = app.Router()
+
+const User = require('../models/User')
 const Provider = require('../models/Provider')
 
-const LoginRoute = express.Router();
-const jwtMiddleware = exjwt({ secret: config.public_key })
-
-LoginRoute.use(bodyParser.urlencoded({ extended: true }));
+LoginRoute.use(bodyParser.urlencoded({ extended: false }));
 LoginRoute.use(bodyParser.json());
 
-LoginRoute.post('/api/user/login', (req, res) => {
-    User.findOne({ username: req.body.username }, function checkDB(err, user) {
-        if (bcrypt.compare(req.body.password, user.password,
-            function respondIfTrue(err, res, next) {
-                if (res) {
-                    let token = jwt.sign({ id: user._id }, config.public_key, {
-                        expiresIn: '2h'
-                    });
-                    res.sendStatus(200).json({
-                        status: "success", message: "user found", data: { username: user.username, id: user._id, token: token }
-                    });
-                }
-                else {
-                    next(err)
-                }
-            }
-        )) { }
+LoginRoute.post('/api/login/user', (req, res, next) => {
+    User.findOne({ email: req.body.email }, function (err, user) {
+        if (User.comparePassword(req.body.password, user.password)) {
+            console.log('Password matches')
+
+            let token = jwt.sign({
+                _id: user._id,
+                email: user.email
+            },
+                config.secret_key, { expiresIn: Math.floor(Date.now() / 1000)+(360) });
+
+            res.status(200)
+                .json({
+                    id: user._id,
+                    email: user.email,
+                    token: token,
+                    expiresIn: Math.floor(Date.now() / 1000)+(360)
+                })
+
+            next()
+        }
         else {
-            res.sendStatus(401).json({ status: "error", message: `Invalid email/password!!! ${err}`, data: null })
+            console.log(err)
+            next(err)
         }
     })
-});
-
-LoginRoute.get('/api/user/login', jwtMiddleware, (req, res) => {
-
-    res.sendStatus(200);
 })
 
+LoginRoute.post('api/user/login', (req, res) => {
+    Provider.findOne({ email: req.body.email }, function providerFind(err, provider) {
+        if (Provider.comparePassword(req.body.password, user.password)) {
+            console.log('Password matches')
 
-module.exports = LoginRoute;
+            let token = jwt.sign({
+                _id: provider._id,
+                email: provider.email
+            },
+                config.secret_key, { expiresIn: Math.floor(Date.now() / 1000)+(360) });
+
+            res.status(200)
+                .json({
+                    id: user._id,
+                    email: provider.email,
+                    token: token,
+                    expiresIn: Math.floor(Date.now() / 1000)+(360)
+                })
+
+            next()
+        }
+        else {
+            console.log(err)
+            next(err)
+        }
+    })
+})
+
+module.exports = LoginRoute
+
+
+/* const user = User.find({ email: req.body.email })
+
+if (user) {
+    try {
+         if (bcrypt.compare(req.body.password, user.password)) {
+            let token = jwt.sign({
+                _id: user._id,
+                email: user.email
+            },
+            config.secret_key, { expiresIn: '5h' });
+
+            res.status(200)
+                .json({
+                    id: user._id,
+                    email: user.email,
+                    token: token,
+                })
+        }
+        else {
+            res.status(403)
+                .send('User and password do not match')
+            console.log(err)
+            next()
+        }
+    } catch (error) {
+        console.log("Unable to find requested user.")
+        next()
+
+    }
+} */
