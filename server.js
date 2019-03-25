@@ -8,7 +8,7 @@ const app = express();
 
 //corse settings
 const corsOptions = {
-    origin: 'http://localhost:4200',
+    origin: '*',
     optionsSuccessStatus: 200
 }
 
@@ -23,20 +23,21 @@ mongoose.connect(connection, {useNewUrlParser:true})
 
 //Routes Available
 const user = require('./routes/User')
-// const provider = require('./routes/Provider')
+const provider = require('./routes/Provider')
 const login = require('./routes/Login')
 const register = require('./routes/Register')
 
 app.use(cors(corsOptions))
 app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', `http://localhost:${port}`);
-        res.setHeader('Access-Control-Allow-Headers', 'Content-type:Authorization');
+        res.setHeader('Access-Control-Allow-Origin', `*`);
+        res.setHeader('Access-Control-Allow-Headers', '*');
         next();
     })
     
 app.use([
     login,
     user,
+    provider,
     register])
 
 

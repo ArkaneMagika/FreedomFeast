@@ -9,7 +9,7 @@ const Provider = require('../models/Provider');
 RegisterRoute.use(bodyParser.urlencoded({ extended: false }))
 RegisterRoute.use(bodyParser.json())
 
-RegisterRoute.post('/api/register/user', async (req, res) => {
+RegisterRoute.post('/api/register/user', (req, res) => {
     User.create(req.body, function onUserRegister(err, user){
         if(err){
             // console.log(err)
@@ -17,13 +17,14 @@ RegisterRoute.post('/api/register/user', async (req, res) => {
         }
         else{
             // console.log(user)
-            res.send(200)
+            res
+            // .send(200)
             .json(user)
         }
     })
 })
 
-RegisterRoute.post('/api/register/provider', async(req, res) =>{
+RegisterRoute.post('/api/register/provider', (req, res) =>{
     Provider.create(req.body, function onProviderRegister(err, provider){
         if(err){
             console.log(err)

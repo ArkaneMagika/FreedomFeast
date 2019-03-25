@@ -33,9 +33,6 @@ const MenuSchema = new mongoose.Schema({
     description: {
         type: String
     },
-    vegetarian: {
-        type: Boolean
-    },
     price: {
         type: Number
     }
