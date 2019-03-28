@@ -9,7 +9,7 @@ const User = require('../models/User')
 OrderRoute.use(bodyParser.urlencoded({ extended: true }));
 OrderRoute.use(bodyParser.json());
 
-OrderRouter.get('/api/users/orders/', (req, res) => {
+OrderRouter.get('/api/users/orders', (req, res) => {
     Order.findById(function (err, order) {
         if (true) {
             res.json(order)
@@ -21,12 +21,12 @@ OrderRouter.get('/api/users/orders/', (req, res) => {
         }
     })
 })
-Order.Router.get('/api/provider/orders/', (req, res) => {
+Order.Router.get('/api/provider/orders', (req, res) => {
     Order.findById
 })
 
 //creates a new order
-OrderRoute.post('/api/orders/add', (req, res) => {
+OrderRoute.post('/api/orders', (req, res) => {
     Order.create({
         kitchen_id: req.body.kitchen_id,
         kitchen_name: req.body.kitchen_name,

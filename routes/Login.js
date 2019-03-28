@@ -24,8 +24,7 @@ LoginRoute.post('/api/login/user', (req, res, next) => {
                     },
                         config.secret_key, { expiresIn: Math.floor(Date.now() / 1000) + (360) });
 
-                    res.status(200)
-                        .json({
+                    res.json({
                             id: user._id,
                             email: user.email,
                             token: token,
@@ -49,11 +48,11 @@ LoginRoute.post('/api/login/user', (req, res, next) => {
     })
 })
 
-LoginRoute.post('api/user/login', (req, res) => {
+LoginRoute.post('/api/login/provider', (req, res) => {
     Provider.findOne({ email: req.body.email }, function providerFind(err, provider) {
         try {
             if (provider != null) {
-                if (Provider.comparePassword(req.body.password, user.password)) {
+                if (Provider.comparePassword(req.body.password, provider.password)) {
                     console.log('Password matches')
 
                     let token = jwt.sign({
@@ -62,15 +61,12 @@ LoginRoute.post('api/user/login', (req, res) => {
                     },
                         config.secret_key, { expiresIn: Math.floor(Date.now() / 1000) + (360) });
 
-                    res.status(200)
-                        .json({
-                            id: user._id,
+                    res.json({
+                            id: provider._id,
                             email: provider.email,
                             token: token,
                             expiresIn: Math.floor(Date.now() / 1000) + (360)
                         })
-
-                    next()
                 }
                 else {
                     console.log(err)
@@ -79,8 +75,8 @@ LoginRoute.post('api/user/login', (req, res) => {
             } else {
                 res.status(404, "User cannot be found")
             }
-        } catch (error) {
-            console.log(error)
+        } catch (err) {
+            console.log(err)
         }
 
     })
