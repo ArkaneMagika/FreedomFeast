@@ -78,7 +78,7 @@ ProviderRoute.post('/api/provider/menu', (req, res, next) => {
             '_id': req.query.id
         },
         {
-            $push:
+            "$push":
             {
                 "menu": menuItem
             }
@@ -108,25 +108,23 @@ ProviderRoute.put('/api/provider/menu', (req, res, next) => {
     console.log(req.query._id)
     console.log(providerQuery)
 
-    Provider.updateOne({
-        "_id": providerQuery,
-        "menu._id": menuItemData._id
-    },
+    Provider.findOneAndUpdate(
         {
-            "$push":
+            "_id": providerQuery,
+            "menu._id": menuItemData._id
+        },
+        {
+            "$set":
             {
-                // "menu.$.name": menuItemData.name,
-                // "menu.$.type": menuItemData.type,
-                // "menu.$.description": menuItemData.description,
-                // "menu.$.prcie":menuItemData.price
-                "menu": menuItemData
+                "menu.$": menuItemData
             }
         },
+        {
+            "new": true
+        },
         function (err, provider) {
-            if (err) {
-                // console.log(provider)
-                return next(err)
-            }
+            if (err) return next(err)
+
             if (provider == null) {
                 console.log("Provider not found")
                 console.log(providerQuery)
@@ -134,15 +132,11 @@ ProviderRoute.put('/api/provider/menu', (req, res, next) => {
             }
             else {
                 console.log(provider)
-                console.log(providerQuery)
+                // console.log(providerQuery)
                 // next()
                 return res.json(provider)
             }
         })
-    // .then((results) => {
-    //     console.log(results)
-    // })
-    // .catch(e => console.log(e))
 })
 
 //Delete a Menu Item from Provider
@@ -155,22 +149,25 @@ ProviderRoute.delete('/api/provider/menu', (req, res, next) => {
         "price": req.body.price
     }
     Provider.updateOne(
-        { 'menu._id': menuItem.id },
+        {
+            '_id': req.query._id,
+            'menu._id': menuItem.id,
+        },
         {
             "$pull": {
-                "menu": { _id: req.body._id }
+                "menu": { "_id": menuItem._id }
             }
         }
         ,
         function deleteMenu(err, provider) {
-            if (err) {
-                return next(err)
-            }
+            if (err) return next(err)
+
             else {
                 console.log(provider)
                 // return res.json(provider.menu)
             }
         })
+    return res.sendStatus(200);
 })
 
 module.exports = ProviderRoute;
